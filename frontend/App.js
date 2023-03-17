@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import UserView from './src/UserView';
@@ -9,13 +10,18 @@ export default function App() {
     // </View>
     <UserView />
   );
+=======
+import {NavigationContainer} from '@react-navigation/native'
+import Tabs from './navigation/tab'
+import React from 'react'
+
+const App = () => {
+  return(
+    <NavigationContainer>
+      <Tabs/>
+    </NavigationContainer>
+  )
+>>>>>>> thuyenvippro113
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App;
