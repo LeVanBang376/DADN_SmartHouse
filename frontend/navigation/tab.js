@@ -1,20 +1,19 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import deviceScreen from '../screen/deviceScreen'
-import historyScreen from '../screen/historyScreen'
-import sensorScreen from '../screen/sensorScreen'
-import settingsScreen from '../screen/settingScreen'
-
+import sensorScreen from '../src/screens/sensorScreen/sensorScreen';
+import settingScreen from '../src/screens/settingScreen/settingScreen';
+import historyScreen from '../src/screens/historyScreen/historyScreen';
+import Manage_devices from '../src/screens/devices/Manage_devices'
 
 const Tab = createBottomTabNavigator();
 
 const Tabs = () => {
   return (
     <Tab.Navigator>
-        <Tab.Screen name="Thiết bị" component={deviceScreen} />
-        <Tab.Screen name="Cảm biến" component={sensorScreen} />
-        <Tab.Screen name="Lịch sử" component={historyScreen} />
-        <Tab.Screen name="Cài đặt" component={settingsScreen} />
+      <Tab.Screen name="Thiết bị" component={Manage_devices} />
+      <Tab.Screen name="Cảm biến" component={sensorScreen} />
+      <Tab.Screen name="Lịch sử" component={historyScreen} />
+      <Tab.Screen name="Cài đặt" component={settingScreen} />
     </Tab.Navigator>
   );
 }
