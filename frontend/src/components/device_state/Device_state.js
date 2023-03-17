@@ -4,7 +4,7 @@ import styles from './styles'
 import Color from '../../colors/Color';
 export default function Device_state(props) {
     const [isPressed, setIsPressed] = useState(false)
-    const [modalVisible, setModalVisible] = useState(false);
+    const [modalVisible, setModalVisible] = useState(false)
     const [isEnabled, setIsEnabled] = useState(false)
     const toggleSwitch = () => setIsEnabled(previousState => !previousState)
     const handlePressIn = () => {
