@@ -3,13 +3,13 @@ import * as React from "react";
 import { Text, View, Button, StyleSheet } from "react-native";
 
 
-const historyScreen = ({ navigation }) => {
+const changePassword = ({ navigation }) => {
     return (
         <View>
-            <Text>Lịch sử</Text>
+            <Text>Cảm biến</Text>
         </View>
     )
 }
 
-export default historyScreen
+export default changePassword
 

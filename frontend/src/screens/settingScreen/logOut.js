@@ -3,13 +3,13 @@ import * as React from "react";
 import { Text, View, Button, StyleSheet } from "react-native";
 
 
-const historyScreen = ({ navigation }) => {
+const logOut = ({ navigation }) => {
     return (
         <View>
-            <Text>Lịch sử</Text>
+            <Text>Dang xuat</Text>
         </View>
     )
 }
 
-export default historyScreen
+export default logOut
 

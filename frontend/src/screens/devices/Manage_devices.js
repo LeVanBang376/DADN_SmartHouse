@@ -23,6 +23,13 @@ export default function Manage_devices() {
                     title: 'Devices',
                 }}
             />
+            {/* <Stack.Screen
+                name='historyScreen'
+                component={historyScreen}
+                options={{
+                    title: 'Lịch sử',
+                }}
+            /> */}
 
             <Stack.Screen
                 name='Fan_detail'

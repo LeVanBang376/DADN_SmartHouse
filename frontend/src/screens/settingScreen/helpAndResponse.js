@@ -14,43 +14,24 @@ import { NavigationContainer } from '@react-navigation/native';
 import { useNavigation } from '@react-navigation/native';
 
 const SECTIONS = [
-//   {
-//     header: '',
-//     items: [
-//       { id: 'language', icon: 'globe', label: 'Language', type: 'select' },
-//       { id: 'darkMode', icon: 'moon', label: 'Dark Mode', type: 'toggle' },
-//       { id: 'wifi', icon: 'wifi', label: 'Use Wi-Fi', type: 'toggle' },
-//     ],
-//   },
   {
-    header: 'Tiện ích',
+    header: 'Phản hồi',
     items: [
-      { id: 'profile', icon: 'flag',color: '#fd2d54', label: 'Thông tin cá nhân', type: 'link' },
-      { id: 'keyChange', icon: 'key',color: '#007afe', label: 'Đổi mật khẩu', type: 'link' },
+      { id: 'response', icon: 'flag',color: '#fd2d54', label: 'Phản hồi', type: 'link' },
     ],
   },
   {
     header: 'Trợ giúp',
     items: [
-      { id: 'help', icon: 'file-text',color: '#fe9400', label: 'Điều khoản và chính sách', type: 'link' },
-      { id: 'response', icon: 'message-square',color: '#32c759', label: 'Trợ giúp và phản hồi', type: 'link' },
-    ],
-  },
-  {
-    header: 'Lối tắt',
-    items: [
-        { id: 'logOut', icon: 'log-out', color: '#fe9400', label: 'Đăng xuất', type: 'link' },
+      { id: 'problem', icon: 'file-text',color: '#fe9400', label: 'Các vấn đề thường gặp', type: 'link' },
+      { id: 'request', icon: 'message-square',color: '#32c759', label: 'Gửi yêu cầu trợ giúp', type: 'link' },
     ],
   },
 ];
 
 
 export default function settingScreen() {
-  const [form, setForm] = useState({
-    language: 'English',
-    darkMode: true,
-    wifi: false,
-  });
+
   const navigation = useNavigation();
   return (
     <SafeAreaView style={{ backgroundColor: '#f6f6f6' }}>
@@ -62,30 +43,6 @@ export default function settingScreen() {
             Lorem ipsum dolor sit amet consectetur.
           </Text>
         </View> */}
-
-        <View style={styles.profile}>
-          <Image
-            alt=""
-            source={{
-              uri: 'https://scontent.fsgn4-1.fna.fbcdn.net/v/t1.6435-1/68276911_507359013346811_8460830039745757184_n.jpg?stp=c0.5.461.459a_dst-jpg_s240x240&_nc_cat=103&ccb=1-7&_nc_sid=7206a8&_nc_ohc=LMUd3IK2jz8AX-_dT_c&_nc_ht=scontent.fsgn4-1.fna&oh=00_AfC01RJvdz4aA5TTk8K8pisL0ebFfeYdMUwEG1br2NR2bQ&oe=644108E7',
-            }}
-            style={styles.profileAvatar}
-          />
-
-          <Text style={styles.profileName}>Nguyễn Mạnh Thuyên</Text>
-
-          <Text style={styles.profileEmail}>thuyen.nguyennmt942@hcmut.edu.vn</Text>
-
-          {/* <TouchableOpacity
-            onPress={() => {
-              // handle onPress
-            }}>
-            <View style={styles.profileAction}>
-              <Text style={styles.profileActionText}>Edit Profile</Text>
-              <FeatherIcon color="#fff" name="edit" size={16} /> 
-            </View>
-          </TouchableOpacity> */}
-        </View>
 
         {SECTIONS.map(({ header, items }) => (
           <View style={styles.section} key={header}>
@@ -104,17 +61,13 @@ export default function settingScreen() {
                     <TouchableOpacity
                       onPress={() => {
                         if (type === 'link') {
-                          if (id === 'profile') {
-                            navigation.navigate('profileScreen');
-                          } else if (id === 'keyChange') {
-                            navigation.navigate('changePassword');
-                          } else if (id === 'help') {
-                            navigation.navigate('termsAndPolicies');
-                          } else if (id === 'response') {
-                            navigation.navigate('helpAndResponse');
-                          } else if (id === 'logOut') {
-                            navigation.navigate('logOut');
-                          } 
+                          if (id === 'response') {
+                            navigation.navigate('response');
+                          } else if (id === 'problem') {
+                            navigation.navigate('problemScreen');
+                          } else if (id === 'request') {
+                            navigation.navigate('requestScreen');
+                          }
                           // Add conditions for other links here
                         } else {
                           // Handle other types of components
@@ -161,58 +114,19 @@ export default function settingScreen() {
 }
 const styles = StyleSheet.create({
   container: {
-    paddingVertical: 24,
+    paddingVertical: 10,
   },
   section: {
     paddingHorizontal: 24,
   },
   sectionHeader: {
-    paddingVertical: 12,
-    fontSize: 12,
-    fontWeight: '600',
+    fontSize: 14,
+    fontWeight: 'bold',
+    color: '#000',
     color: '#9e9e9e',
-    textTransform: 'uppercase',
     letterSpacing: 1.1,
   },
-  profile: {
-    padding: 24,
-    backgroundColor: '#fff',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  profileAvatar: {
-    width: 150,
-    height: 150,
-    borderRadius: 9999,
-  },
-  profileAvatarWrapper: {
-    position: 'relative',
-  },
-  profileAction: {
-    position: 'absolute',
-    right: -4,
-    bottom: -10,
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: 28,
-    height: 28,
-    borderRadius: 9999,
-    backgroundColor: '#007bff',
-  },
-  profileName: {
-    marginTop: 20,
-    fontSize: 19,
-    fontWeight: '600',
-    color: '#414d63',
-    textAlign: 'center',
-  },
-  profileAddress: {
-    marginTop: 5,
-    fontSize: 16,
-    color: '#989898',
-    textAlign: 'center',
-  },
+  
   row: {
     flexDirection: 'row',
     alignItems: 'center',
