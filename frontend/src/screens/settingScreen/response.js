@@ -3,11 +3,13 @@ import * as React from "react";
 import { Text, View, Button, StyleSheet } from "react-native";
 
 
-export default function profileScreen({ navigation }) {
+const response = ({ navigation }) => {
     return (
         <View>
-            <Text>Thong tin ca nhan</Text>
+            <Text>phan hoi</Text>
         </View>
     )
 }
+
+export default response
 

@@ -3,11 +3,13 @@ import * as React from "react";
 import { Text, View, Button, StyleSheet } from "react-native";
 
 
-export default function profileScreen({ navigation }) {
+const logOut = ({ navigation }) => {
     return (
         <View>
-            <Text>Thong tin ca nhan</Text>
+            <Text>Dang xuat</Text>
         </View>
     )
 }
+
+export default logOut
 

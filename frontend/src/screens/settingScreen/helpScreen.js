@@ -3,10 +3,10 @@ import * as React from "react";
 import { Text, View, Button, StyleSheet } from "react-native";
 
 
-export default function profileScreen({ navigation }) {
+export default function helpScreen ({ navigation }) {
     return (
         <View>
-            <Text>Thong tin ca nhan</Text>
+            <Text>Trợ giúp</Text>
         </View>
     )
 }

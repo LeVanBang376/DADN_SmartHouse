@@ -5,8 +5,8 @@ import {
   ScrollView,
   View,
   Text,
-  Image,
   TouchableOpacity,
+  Image,
   Switch,
 } from 'react-native';
 import FeatherIcon from 'react-native-vector-icons/Feather';
@@ -14,32 +14,32 @@ import { NavigationContainer } from '@react-navigation/native';
 import { useNavigation } from '@react-navigation/native';
 
 const SECTIONS = [
-//   {
-//     header: '',
-//     items: [
-//       { id: 'language', icon: 'globe', label: 'Language', type: 'select' },
-//       { id: 'darkMode', icon: 'moon', label: 'Dark Mode', type: 'toggle' },
-//       { id: 'wifi', icon: 'wifi', label: 'Use Wi-Fi', type: 'toggle' },
-//     ],
-//   },
+  //   {
+  //     header: '',
+  //     items: [
+  //       { id: 'language', icon: 'globe', label: 'Language', type: 'select' },
+  //       { id: 'darkMode', icon: 'moon', label: 'Dark Mode', type: 'toggle' },
+  //       { id: 'wifi', icon: 'wifi', label: 'Use Wi-Fi', type: 'toggle' },
+  //     ],
+  //   },
   {
     header: 'Tiện ích',
     items: [
-      { id: 'profile', icon: 'flag', label: 'Thông tin cá nhân', type: 'link' },
-      { id: 'keyChange', icon: 'key', label: 'Đổi mật khẩu', type: 'link' },
+      { id: 'profile', icon: 'flag', color: '#fd2d54', label: 'Thông tin cá nhân', type: 'link' },
+      { id: 'keyChange', icon: 'key', color: '#007afe', label: 'Đổi mật khẩu', type: 'link' },
     ],
   },
   {
     header: 'Trợ giúp',
     items: [
-      { id: 'help', icon: 'file-text', label: 'Điều khoản và chính sách', type: 'link' },
-      { id: 'respone', icon: 'message-square', label: 'Phản hồi và trợ giúp', type: 'link' },
+      { id: 'help', icon: 'file-text', color: '#fe9400', label: 'Điều khoản và chính sách', type: 'link' },
+      { id: 'response', icon: 'message-square', color: '#32c759', label: 'Trợ giúp và phản hồi', type: 'link' },
     ],
   },
   {
     header: 'Lối tắt',
     items: [
-        { id: 'logOut', icon: 'log-out', label: 'Đăng xuất', type: 'link' },
+      { id: 'logOut', icon: 'log-out', color: '#fe9400', label: 'Đăng xuất', type: 'link' },
     ],
   },
 ];
@@ -67,16 +67,16 @@ export default function settingScreen() {
           <Image
             alt=""
             source={{
-              uri: 'https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2.5&w=256&h=256&q=80',
+              uri: 'https://scontent.fsgn4-1.fna.fbcdn.net/v/t1.6435-1/68276911_507359013346811_8460830039745757184_n.jpg?stp=c0.5.461.459a_dst-jpg_s240x240&_nc_cat=103&ccb=1-7&_nc_sid=7206a8&_nc_ohc=LMUd3IK2jz8AX-_dT_c&_nc_ht=scontent.fsgn4-1.fna&oh=00_AfC01RJvdz4aA5TTk8K8pisL0ebFfeYdMUwEG1br2NR2bQ&oe=644108E7',
             }}
             style={styles.profileAvatar}
           />
 
-          <Text style={styles.profileName}>John Doe</Text>
+          <Text style={styles.profileName}>Nguyễn Mạnh Thuyên</Text>
 
-          <Text style={styles.profileEmail}>john.doe@mail.com</Text>
+          <Text style={styles.profileEmail}>thuyen.nguyennmt942@hcmut.edu.vn</Text>
 
-          <TouchableOpacity
+          {/* <TouchableOpacity
             onPress={() => {
               // handle onPress
             }}>
@@ -84,7 +84,7 @@ export default function settingScreen() {
               <Text style={styles.profileActionText}>Edit Profile</Text>
               <FeatherIcon color="#fff" name="edit" size={16} /> 
             </View>
-          </TouchableOpacity>
+          </TouchableOpacity> */}
         </View>
 
         {SECTIONS.map(({ header, items }) => (
@@ -93,7 +93,7 @@ export default function settingScreen() {
               <Text style={styles.sectionHeaderText}>{header}</Text>
             </View>
             <View style={styles.sectionBody}>
-              {items.map(({ id, label, icon, type, value }, index) => {
+              {items.map(({ id, label, icon, color, type, value }, index) => {
                 return (
                   <View
                     key={id}
@@ -107,7 +107,13 @@ export default function settingScreen() {
                           if (id === 'profile') {
                             navigation.navigate('profileScreen');
                           } else if (id === 'keyChange') {
-                            navigation.navigate('Fan_detail');
+                            navigation.navigate('changePassword');
+                          } else if (id === 'help') {
+                            navigation.navigate('termsAndPolicies');
+                          } else if (id === 'response') {
+                            navigation.navigate('helpAndResponse');
+                          } else if (id === 'logOut') {
+                            navigation.navigate('logOut');
                           }
                           // Add conditions for other links here
                         } else {
@@ -115,12 +121,9 @@ export default function settingScreen() {
                         }
                       }}>
                       <View style={styles.row}>
-                        <FeatherIcon
-                          color="#616161"
-                          name={icon}
-                          style={styles.rowIcon}
-                          size={22}
-                        />
+                        <View style={[styles.rowIcon, { backgroundColor: color }]}>
+                          <FeatherIcon color="#fff" name={icon} size={18} />
+                        </View>
 
                         <Text style={styles.rowLabel}>{label}</Text>
 
@@ -161,107 +164,79 @@ const styles = StyleSheet.create({
     paddingVertical: 24,
   },
   section: {
-    paddingTop: 12,
+    paddingHorizontal: 24,
   },
   sectionHeader: {
-    paddingHorizontal: 24,
-    paddingVertical: 8,
-  },
-  sectionHeaderText: {
-    fontSize: 14,
+    paddingVertical: 12,
+    fontSize: 12,
     fontWeight: '600',
-    color: '#a7a7a7',
+    color: '#9e9e9e',
     textTransform: 'uppercase',
-    letterSpacing: 1.2,
-  },
-  sectionBody: {
-    borderTopWidth: 1,
-    borderBottomWidth: 1,
-    borderColor: '#e3e3e3',
-  },
-  header: {
-    paddingLeft: 24,
-    paddingRight: 24,
-    marginBottom: 12,
-  },
-  title: {
-    fontSize: 32,
-    fontWeight: '700',
-    color: '#1d1d1d',
-    marginBottom: 6,
-  },
-  subtitle: {
-    fontSize: 15,
-    fontWeight: '500',
-    color: '#929292',
+    letterSpacing: 1.1,
   },
   profile: {
-    padding: 16,
+    padding: 24,
+    backgroundColor: '#fff',
     flexDirection: 'column',
     alignItems: 'center',
-    backgroundColor: '#fff',
-    borderTopWidth: 1,
-    borderBottomWidth: 1,
-    borderColor: '#e3e3e3',
+    justifyContent: 'center',
   },
   profileAvatar: {
-    width: 60,
-    height: 60,
+    width: 150,
+    height: 150,
     borderRadius: 9999,
   },
-  profileName: {
-    marginTop: 12,
-    fontSize: 20,
-    fontWeight: '600',
-    color: '#090909',
-  },
-  profileEmail: {
-    marginTop: 6,
-    fontSize: 16,
-    fontWeight: '400',
-    color: '#848484',
+  profileAvatarWrapper: {
+    position: 'relative',
   },
   profileAction: {
-    marginTop: 12,
-    paddingVertical: 10,
-    paddingHorizontal: 16,
-    flexDirection: 'row',
+    position: 'absolute',
+    right: -4,
+    bottom: -10,
     alignItems: 'center',
     justifyContent: 'center',
+    width: 28,
+    height: 28,
+    borderRadius: 9999,
     backgroundColor: '#007bff',
-    borderRadius: 12,
   },
-  profileActionText: {
-    marginRight: 8,
-    fontSize: 15,
+  profileName: {
+    marginTop: 20,
+    fontSize: 19,
     fontWeight: '600',
-    color: '#fff',
+    color: '#414d63',
+    textAlign: 'center',
+  },
+  profileAddress: {
+    marginTop: 5,
+    fontSize: 16,
+    color: '#989898',
+    textAlign: 'center',
   },
   row: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'flex-start',
-    paddingRight: 24,
     height: 50,
-  },
-  rowWrapper: {
-    paddingLeft: 24,
     backgroundColor: '#fff',
-    borderTopWidth: 1,
-    borderColor: '#e3e3e3',
+    borderRadius: 8,
+    marginBottom: 12,
+    paddingLeft: 12,
+    paddingRight: 12,
   },
   rowIcon: {
+    width: 32,
+    height: 32,
+    borderRadius: 9999,
     marginRight: 12,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   rowLabel: {
     fontSize: 17,
-    fontWeight: '500',
-    color: '#000',
-  },
-  rowValue: {
-    fontSize: 17,
-    color: '#616161',
-    marginRight: 4,
+    fontWeight: '400',
+    color: '#0c0c0c',
   },
   rowSpacer: {
     flexGrow: 1,
