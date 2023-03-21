@@ -3,6 +3,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
 import Devices_main from './Devices_main'
 import Fan_detail from '../devices_detail/fan_detail/Fan_detail'
+import Bulb_detail from '../devices_detail/bulb_detail/Bulb_detail'
 import Color from '../../colors/Color'
 const Stack = createNativeStackNavigator()
 
@@ -29,6 +30,14 @@ export default function Manage_devices() {
                 component={Fan_detail}
                 options={{
                     title: 'Quạt',
+                }}
+            />
+
+            <Stack.Screen
+                name='Bulb_detail'
+                component={Bulb_detail}
+                options={{
+                    title: 'Bóng đèn',
                 }}
             />
         </Stack.Navigator>
