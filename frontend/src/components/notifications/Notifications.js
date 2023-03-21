@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Text, View, Modal, Pressable } from 'react-native'
-import { LinearGradient } from 'expo-linear-gradient';
+import LinearGradient from 'react-native-linear-gradient'
 import styles from './styles'
 export default function Notifications(props) {
     const [modalVisible, setModalVisible] = useState(true)
