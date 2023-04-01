@@ -55,19 +55,11 @@ export default function settingScreen() {
   return (
     <SafeAreaView style={{ backgroundColor: '#f6f6f6' }}>
       <ScrollView contentContainerStyle={styles.container}>
-        {/* <View style={styles.header}>
-          <Text style={styles.title}>Settings</Text>
-
-          <Text style={styles.subtitle}>
-            Lorem ipsum dolor sit amet consectetur.
-          </Text>
-        </View> */}
-
         <View style={styles.profile}>
           <Image
             alt=""
             source={{
-              uri: 'https://scontent.fsgn4-1.fna.fbcdn.net/v/t1.6435-1/68276911_507359013346811_8460830039745757184_n.jpg?stp=c0.5.461.459a_dst-jpg_s240x240&_nc_cat=103&ccb=1-7&_nc_sid=7206a8&_nc_ohc=LMUd3IK2jz8AX-_dT_c&_nc_ht=scontent.fsgn4-1.fna&oh=00_AfC01RJvdz4aA5TTk8K8pisL0ebFfeYdMUwEG1br2NR2bQ&oe=644108E7',
+              uri: 'https://bom.so/mW0kNe',
             }}
             style={styles.profileAvatar}
           />
@@ -75,16 +67,6 @@ export default function settingScreen() {
           <Text style={styles.profileName}>Nguyễn Mạnh Thuyên</Text>
 
           <Text style={styles.profileEmail}>thuyen.nguyennmt942@hcmut.edu.vn</Text>
-
-          {/* <TouchableOpacity
-            onPress={() => {
-              // handle onPress
-            }}>
-            <View style={styles.profileAction}>
-              <Text style={styles.profileActionText}>Edit Profile</Text>
-              <FeatherIcon color="#fff" name="edit" size={16} /> 
-            </View>
-          </TouchableOpacity> */}
         </View>
 
         {SECTIONS.map(({ header, items }) => (
@@ -132,14 +114,7 @@ export default function settingScreen() {
                         {type === 'select' && (
                           <Text style={styles.rowValue}>{form[id]}</Text>
                         )}
-
-                        {/* {type === 'toggle' && (
-                          <Switch
-                            onChange={val => setForm({ ...form, [id]: val })}
-                            value={form[id]}
-                          />
-                        )} */}
-
+                
                         {(type === 'select' || type === 'link') && (
                           <FeatherIcon
                             color="#ababab"
@@ -182,10 +157,21 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   profileAvatar: {
-    width: 150,
-    height: 150,
-    borderRadius: 9999,
+  width: 150,
+  height: 150,
+  borderRadius: 9999,
+  shadowColor: "#000",
+  shadowOffset: {
+    width: 0,
+    height: 2,
   },
+  shadowOpacity: 0.25,
+  shadowRadius: 3.84,
+
+  elevation: 5,
+  borderWidth: 3,
+  borderColor: '#fff',
+},
   profileAvatarWrapper: {
     position: 'relative',
   },

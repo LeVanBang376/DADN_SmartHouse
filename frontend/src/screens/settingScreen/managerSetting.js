@@ -16,6 +16,7 @@ import helpAndResponse from './helpAndResponse'
 import helpScreen from './helpScreen'
 import requestScreen from './requestScreen'
 import problemScreen from './problemScreen'
+import EditProfileScreen from './EditProfileScreen'
 const Stack = createNativeStackNavigator()
 
 export default function managerSetting() {
@@ -40,6 +41,13 @@ export default function managerSetting() {
                 component={profileScreen}
                 options={{
                     title: 'Thông tin cá nhân',
+                }}
+            />
+            <Stack.Screen
+                name='EditProfileScreen'
+                component={EditProfileScreen}
+                options={{
+                    title: 'Chỉnh sửa thông tin cá nhân',
                 }}
             />
             <Stack.Screen
