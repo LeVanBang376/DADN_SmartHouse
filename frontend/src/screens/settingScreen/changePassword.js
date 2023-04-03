@@ -6,6 +6,7 @@ const changePassword = () => {
     const [currentPassword, setCurrentPassword] = useState('');
     const [newPassword, setNewPassword] = useState('');
     const [confirmNewPassword, setConfirmNewPassword] = useState('');
+    const [checkPassword, setCheckPassWord] = useState('thuyen');
     const [showCurrentPassword, setShowCurrentPassword] = useState(true);
     const [showNewPassword, setShowNewPassword] = useState(false);
     const [showConfirmNewPassword, setShowConfirmNewPassword] = useState(false);
@@ -19,9 +20,8 @@ const changePassword = () => {
             Alert.alert('Lỗi', 'Vui lòng nhập đầy đủ thông tin');
             return;
         }
-
-        // Kiểm tra mật khẩu cũ có đúng không
-        if (currentPassword !== "thuyendeptrai" || currentPassword !== "thuyen") {
+        //Kiểm tra mật khẩu cũ có đúng không
+        if (currentPassword !== checkPassword) {
             Alert.alert('Lỗi', 'Mật khẩu cũ không đúng');
             return;
         }
@@ -33,13 +33,18 @@ const changePassword = () => {
         }
         
         // Hiển thị thông báo thành công
+        setCheckPassWord(newPassword);
         Alert.alert('Thành công', 'Đổi mật khẩu thành công');
+        setCurrentPassword('');
+        setNewPassword('');
+        setConfirmNewPassword('');
+        //console.log(changePassword);
     };
 
     return (
         <View style={styles.container}>
             <View style={styles.formContainer}>
-                <Text style={styles.label}>Current Password</Text>
+                <Text style={styles.label}>Mật khẩu hiện tại của bạn</Text>
                 <View style={styles.inputContainer}>
                     <TextInput
                         style={styles.input}
@@ -50,6 +55,7 @@ const changePassword = () => {
                     <TouchableOpacity
                         style={styles.showHideButton}
                         onPress={() => setShowCurrentPassword(!showCurrentPassword)}
+                    
                     >
                         <Ionicons
                             name={showCurrentPassword ? 'eye-off' : 'eye'}
@@ -59,7 +65,7 @@ const changePassword = () => {
                     </TouchableOpacity>
                 </View>
 
-                <Text style={styles.label}>New Password</Text>
+                <Text style={styles.label}>Mật khẩu mới</Text>
                 <View style={styles.inputContainer}>
                     <TextInput
                         style={styles.input}
@@ -79,7 +85,7 @@ const changePassword = () => {
                     </TouchableOpacity>
                 </View>
 
-                <Text style={styles.label}>Confirm New Password</Text>
+                <Text style={styles.label}>Nhập lại mật khẩu mới</Text>
                 <View style={styles.inputContainer}>
                     <TextInput
                         style={styles.input}

@@ -1,37 +1,61 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-
-const policies = () => {
+import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import Icon from 'react-native-vector-icons/Ionicons';
+const PoliciesScreen = () => {
   return (
-    <View style={styles.container}>
-      <View style={styles.term}>
-        <Text style={styles.title}>Chính sách 1</Text>
-        <Text style={styles.content}>Nội dung chính sách 1</Text>
+    <ScrollView contentContainerStyle={styles.container}>
+
+      <View style={styles.policy}>
+        <Icon name='ice-cream-outline' style={styles.icon} />
+        <Text style={styles.title}>Chính sách 1: Chính sách bảo mật</Text>
+        <Text style={styles.content}>Bảo vệ thông tin cá nhân của người dùng là một ưu tiên hàng đầu. Chính sách bảo mật sẽ xác định cách thức thu thập, sử dụng và bảo mật thông tin cá nhân của người dùng.</Text>
       </View>
-      <View style={styles.term}>
-        <Text style={styles.title}>Chính sách 2</Text>
-        <Text style={styles.content}>Nội dung chính sách 2.</Text>
+      <View style={styles.policy}>
+        <Icon name='ice-cream-outline' style={styles.icon} />
+        <Text style={styles.title}>Chính sách 2: Chính sách sử dụng</Text>
+        <Text style={styles.content}>Chính sách này sẽ quy định các quyền và trách nhiệm của người dùng khi sử dụng ứng dụng. Bao gồm việc sử dụng ứng dụng chỉ để mục đích cá nhân, không được phép sử dụng để vi phạm pháp luật, ...</Text>
       </View>
-    </View>
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     backgroundColor: '#fff',
     padding: 20,
+    borderRadius: 20,
+    marginHorizontal: 20,
+    marginVertical: 30,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 3,
+    },
+    shadowOpacity: 0.27,
+    shadowRadius: 4.65,
+
+    elevation: 6,
   },
-  term: {
+  policy: {
     backgroundColor: '#f2f2f2',
     padding: 20,
     borderRadius: 10,
     marginBottom: 20,
+    borderWidth: 2,
+    borderColor: '#d6d6d6',
+    borderStyle: 'dashed',
   },
   title: {
     fontSize: 20,
     fontWeight: 'bold',
     marginBottom: 10,
+  },
+  icon: {
+    fontSize: 30,
+    color: '#777',
+    marginRight: 10,
+    marginTop: -10,
+    marginBottom: 5,
   },
   content: {
     fontSize: 16,
@@ -39,4 +63,5 @@ const styles = StyleSheet.create({
   },
 });
 
-export default policies;
+
+export default PoliciesScreen;
