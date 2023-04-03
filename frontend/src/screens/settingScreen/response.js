@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useEffect } from 'react';
-import { SafeAreaView } from 'react-native';
+import { SafeAreaView, StyleSheet } from 'react-native';
 import { GiftedChat } from 'react-native-gifted-chat';
 
 export default function response() {
@@ -32,7 +32,7 @@ export default function response() {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            Authorization: 'Bearer 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'
+            Authorization: 'Bearer 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'
         },
         body: JSON.stringify({
             "model": "text-davinci-003",
@@ -65,7 +65,7 @@ export default function response() {
   };
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <SafeAreaView style={styles.container}>
       <GiftedChat
         messages={messages}
         onSend={newMessages => onSend(newMessages)}
@@ -76,3 +76,20 @@ export default function response() {
     </SafeAreaView>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    borderRadius: 20,
+    margin: 15,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+  },
+});
