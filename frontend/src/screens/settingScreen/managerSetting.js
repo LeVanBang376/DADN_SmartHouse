@@ -97,7 +97,7 @@ export default function managerSetting() {
                 name='helpAndResponse'
                 component={helpAndResponse}
                 options={{
-                    title: 'Trợ giúp và phản hồi',
+                    title: 'Phản hồi và trợ giúp',
                 }}
             />
             <Stack.Screen
