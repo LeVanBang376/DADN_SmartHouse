@@ -4,7 +4,6 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import profileScreen from './profileScreen'
 import settingScreen from './settingScreen'
 import historyScreen from '../historyScreen/historyScreen'
-import sensorScreen from '../sensorScreen/sensorScreen'
 import changePassword from '../../screens/settingScreen/changePassword'
 import policies from '../../screens/settingScreen/policies'
 import term from '../../screens/settingScreen/term'
@@ -50,13 +49,6 @@ export default function managerSetting() {
                 }}
             />
 
-            <Stack.Screen
-                name='sensorScreen'
-                component={sensorScreen}
-                options={{
-                    title: 'Cảm biến',
-                }}
-            />
             <Stack.Screen
                 name='changePassword'
                 component={changePassword}
