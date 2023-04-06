@@ -11,12 +11,13 @@ const Login = ({ navigation }) => {
     const [errormsg, setEroormsg] = useState(null);
 
     const Sendtobackend = () => {
+        console.log(fdata);
         if (fdata.email == '' || fdata.password == '') {
             setEroormsg('All fields are required');
             return;
         }
         else {
-            fetch('http://192.168.0.108:3000/signin', {
+            fetch('http://10.230.9.125:3333/signin', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

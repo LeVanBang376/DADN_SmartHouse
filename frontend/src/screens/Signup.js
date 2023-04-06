@@ -15,7 +15,7 @@ const SignUp = ({ navigation }) => {
     const [errormsg, setEroormsg] = useState(null);
 
     const Sendtobackend = () => {
-        // console.log(fdata);
+        console.log(fdata);
         if (fdata.name == '' ||
             fdata.email == '' ||
             fdata.number == '' ||
@@ -30,7 +30,7 @@ const SignUp = ({ navigation }) => {
                 return;
             }
             else {
-                fetch('http://192.168.0.108:3000/signup', {
+                fetch('http://10.230.9.125:3333/signup', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
