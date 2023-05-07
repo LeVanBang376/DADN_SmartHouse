@@ -8,10 +8,10 @@ import RoomAPI from '../../userContext/RoomContext'
 export default function Home({ navigation }) {
     const { roomList } = React.useContext(DeviceListAPI)
     const { setRoomID } = React.useContext(RoomAPI)
-    const handlePress = (roomID) => {
+    const handlePress = (roomID, roomName) => {
         setRoomID(roomID)
         setRoomID(roomID)
-        navigation.navigate("RoomDetail", { ID: roomID })
+        navigation.navigate("RoomDetail", { ID: roomID, name: roomName })
     }
     return (
         <View style={{ flex: 1, backgroundColor: 'white' }}>
@@ -27,7 +27,7 @@ export default function Home({ navigation }) {
             <Text style={styles.selectRoomText}>Hãy chọn phòng</Text>
             <View style={styles.roomContainer}>
                 {roomList.map((room, number) => (
-                    <Pressable onPress={() => handlePress(room.ID)}>
+                    <Pressable onPress={() => handlePress(room.ID, room.name)}>
                         <RoomItem key={number} name={room.name} type={room.type} />
                     </Pressable>
                 ))}

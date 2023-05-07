@@ -36,9 +36,9 @@ export default function ManageHome({ navigation, route }) {
             <Stack.Screen
                 name='RoomDetail'
                 component={RoomDetail}
-                options={{
-                    title: 'Phòng bếp',
-                }}
+                options={({ route }) => ({
+                    title: route.params.name,
+                })}
             />
 
         </Stack.Navigator>

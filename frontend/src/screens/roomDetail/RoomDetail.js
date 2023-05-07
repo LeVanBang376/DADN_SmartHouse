@@ -67,7 +67,7 @@ export default function RoomDetail({ route }) {
             </SafeAreaView>
             <View style={styles.line2}></View>
             <View style={styles.deviceDetail}>
-                <DeviceDetail name={name} type={type} id={route.params.ID} />
+                <DeviceDetail name={name} type={type} id={route.params.ID} roomName={route.params.name} />
             </View>
         </View>
     )

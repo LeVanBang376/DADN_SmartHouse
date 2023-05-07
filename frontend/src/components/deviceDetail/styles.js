@@ -28,23 +28,34 @@ export default StyleSheet.create({
         borderColor: '#4067F1',
         borderWidth: 1,
         borderRadius: 10,
-        flexDirection: 'row',
         marginBottom: 10,
         marginTop: 10
     },
-    leftContainer: {
-        flex: 4,
-        marginLeft: 25,
-        justifyContent: 'center',
+    topContainer: {
+        flex: 1,
+        flexDirection: 'row',
+        marginLeft: 10,
+        marginTop: 5,
     },
-    rightContainer: {
-        flex: 6,
-        justifyContent: 'center',
-        alignItems: 'center'
+    textContainer: {
+        flex: 1,
+    },
+    bottomContainer: {
+        flex: 1,
+        alignItems: 'flex-end',
+        marginRight: 5,
+        flexDirection: 'row',
+        marginBottom: 5
+
     },
     textLeft1: {
         fontSize: 20,
         fontWeight: 'bold'
+    },
+    switchContainer: {
+        flex: 1,
+        alignItems: 'flex-end',
+        marginRight: 10
     },
     line: {
         marginTop: 10,
@@ -59,16 +70,27 @@ export default StyleSheet.create({
     },
     timeText: {
         fontSize: 24,
-        marginLeft: 10
     },
     unit: {
-        marginTop: 8,
+        marginTop: 5,
         marginLeft: 1,
         marginRight: 5,
         fontSize: 15
     },
     onOff: {
-        marginRight: 15,
+        marginTop: 5,
+        marginLeft: 10,
+        marginRight: 5,
+        fontSize: 15
+    },
+    fixContainer2: {
+        flex: 1,
+    },
+    fixText: {
+        marginLeft: 10,
+        marginRight: 10,
+        fontSize: 24,
+        textAlign: 'right'
     },
     bigCircle: {
         height: 160,
@@ -93,5 +115,93 @@ export default StyleSheet.create({
     },
     powerIconOff: {
         color: '#D2D2D2',
+    },
+    centeredView: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: 22,
+    },
+    modalView: {
+        margin: 20,
+        backgroundColor: 'white',
+        borderRadius: 20,
+        padding: 25,
+        paddingTop: 15,
+        paddingBottom: 15,
+        alignItems: 'flex-start',
+        shadowColor: '#000',
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 4,
+        elevation: 5,
+    },
+    buttonContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        width: 270
+    },
+    button: {
+        borderRadius: 20,
+        padding: 10,
+        elevation: 2,
+        alignSelf: 'center',
+        marginTop: 10,
+    },
+    buttonOpen: {
+        backgroundColor: '#F194FF',
+    },
+    cancelButtonClose: {
+        backgroundColor: '#969998',
+    },
+    buttonClose: {
+        backgroundColor: '#2196F3',
+    },
+    textStyle: {
+        color: 'white',
+        fontWeight: 'bold',
+        textAlign: 'center',
+        marginLeft: 10,
+        marginRight: 10
+    },
+    modalText: {
+        textAlign: 'center',
+        fontSize: 20,
+        fontWeight: 'bold',
+        marginBottom: 5,
+        alignSelf: 'center'
+    },
+    autoText: {
+        fontSize: 16,
+        alignSelf: 'center'
+    },
+    onInput: {
+        height: 30,
+        margin: 12,
+        marginBottom: 8,
+        borderWidth: 1,
+        fontSize: 18
+    },
+    offInput: {
+        height: 30,
+        width: 100,
+        margin: 12,
+        marginBottom: 8,
+        marginLeft: 13.5,
+        borderWidth: 1,
+        fontSize: 18
+    },
+    inputSensorContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        width: 270,
+    },
+    inputTimeContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        width: 270,
     }
 })
