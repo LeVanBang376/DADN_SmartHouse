@@ -4,6 +4,7 @@ import { FontAwesome } from '@expo/vector-icons'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons'
 import { LinearGradient } from 'expo-linear-gradient';
+import SelectDropdown from 'react-native-select-dropdown'
 import UserHelperAPI from '../../userContext/UserHelperContext';
 import PublisherAPI from '../../userContext/PublisherContext';
 import UserAPI from '../../userContext/UserContext';
@@ -313,30 +314,115 @@ function Auto({ route }) {
 }
 
 export default function DeviceDetail(props) {
+    const [changeDeviceModalVisible, setChangeDeviceModalVisible] = useState(false);
+    const deviceTypes = ["Quạt", "Bóng đèn"]
+    const [deviceName, setDeviceName] = React.useState(props.name)
+    const [deviceType, setDeviceType] = React.useState(props.type)
+    const [helperDeviceName, setHelperDeviceName] = React.useState(props.name)
+    React.useEffect(() => {
+        setDeviceName(props.name)
+    }, [props.name])
+
+    React.useEffect(() => {
+        props.type == "bulb" ? setDeviceType(deviceTypes[1]) : setDeviceType(deviceTypes[0])
+    }, [props.type])
     return (
-        <View style={styles.deviceDetailContainer}>
-            <View style={styles.nameContainer}>
-                <Text>{props.name}</Text>
-                <View style={styles.fixContainer}>
-                    <Text>Chỉnh sửa</Text>
-                    <FontAwesome
-                        name='pencil-square-o'
-                        size={25}
-                        style={styles.icon}
-                    />
+        <>
+            <Modal
+                animationType="slide"
+                transparent={true}
+                visible={changeDeviceModalVisible}
+                onRequestClose={() => {
+                    setChangeDeviceModalVisible(!changeDeviceModalVisible);
+                }}>
+                <View style={styles.centeredView}>
+                    <View style={styles.modalView}>
+                        <View>
+                            <Text style={{ fontWeight: 'bold', fontSize: 18 }}>Tên thiết bị</Text>
+                            <View style={{ width: 60 }}>
+                                <SafeAreaView>
+                                    <TextInput
+                                        style={styles.input}
+                                        onChangeText={setHelperDeviceName}
+                                        value={helperDeviceName}
+                                    />
+                                </SafeAreaView>
+                            </View>
+
+                            <Text style={{ fontWeight: 'bold', fontSize: 18 }}>Loại thiết bị</Text>
+                            <SelectDropdown
+                                data={deviceTypes}
+                                defaultValue={deviceType}
+                                onSelect={(selectedItem, index) => {
+                                    console.log(selectedItem, index)
+                                }}
+                                buttonTextAfterSelection={(selectedItem, index) => {
+                                    // text represented after item is selected
+                                    // if data array is an array of objects then return selectedItem.property to render after item is selected
+                                    return selectedItem
+                                }}
+                                rowTextForSelection={(item, index) => {
+                                    // text represented for each item in dropdown
+                                    // if data array is an array of objects then return item.property to represent item in dropdown
+                                    return item
+                                }}
+                                // buttonStyle={styles.dropdownStyle}
+                                rowTextStyle={{ textAlign: 'left' }}
+                                // buttonTextStyle={{ textAlign: 'right' }}
+                                buttonStyle={styles.dropdown1BtnStyle}
+                                buttonTextStyle={styles.dropdown1BtnTxtStyle}
+                                renderDropdownIcon={isOpened => {
+                                    return <FontAwesome name={isOpened ? 'chevron-up' : 'chevron-down'} color={'#444'} size={18} />;
+                                }}
+                            />
+                        </View>
+                        <View style={styles.buttonContainer}>
+                            <View>
+                                <Pressable
+                                    style={[styles.button, styles.cancelButtonClose]}
+                                    onPress={() => setChangeDeviceModalVisible(!changeDeviceModalVisible)}>
+                                    <Text style={styles.textStyle}>Hủy bỏ</Text>
+                                </Pressable>
+                            </View>
+                            <View >
+                                <Pressable
+                                    style={[styles.button, styles.buttonClose]}
+                                    onPress={() => { setChangeDeviceModalVisible(!changeDeviceModalVisible); setDeviceName(helperDeviceName) }}>
+                                    <Text style={styles.textStyle}>Đồng ý</Text>
+                                </Pressable>
+                            </View>
+                        </View>
+                    </View>
                 </View>
-            </View>
-            <Tab.Navigator
-                screenOptions={{
-                    headerShown: false, tabBarIconStyle: { display: "none" }, tabBarLabelStyle: {
-                        fontSize: 15,
-                        marginBottom: 15
-                    },
-                }}
-            >
-                <Tab.Screen name='Trạng thái' component={State} initialParams={{ id: props.id }} />
-                <Tab.Screen name='Tự động' component={Auto} initialParams={{ roomName: props.roomName, deviceName: props.name }} />
-            </Tab.Navigator>
-        </View >
+            </Modal>
+
+            <View style={styles.deviceDetailContainer}>
+                <View style={styles.nameContainer}>
+                    <Text>{props.name}</Text>
+                    <Pressable onPress={() => { setChangeDeviceModalVisible(true); setHelperDeviceName(deviceName) }}>
+                        <View style={styles.fixContainer}>
+                            <Text>Chỉnh sửa</Text>
+                            <FontAwesome
+                                name='pencil-square-o'
+                                size={25}
+                                style={styles.icon}
+                            />
+                        </View>
+                    </Pressable>
+                </View>
+                <Tab.Navigator
+                    screenOptions={{
+                        headerShown: false, tabBarIconStyle: { display: "none" }, tabBarLabelStyle: {
+                            fontSize: 15,
+                            marginBottom: 15
+                        },
+                    }}
+                >
+                    <Tab.Screen name='Trạng thái' component={State} initialParams={{ id: props.id }} />
+                    <Tab.Screen name='Tự động' component={Auto} initialParams={{ roomName: props.roomName, deviceName: props.name }} />
+                </Tab.Navigator>
+            </View >
+        </>
+
     )
 }

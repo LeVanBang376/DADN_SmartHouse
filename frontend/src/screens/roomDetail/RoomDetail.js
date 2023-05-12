@@ -25,26 +25,48 @@ export default function RoomDetail({ route }) {
             <Text style={styles.headerText}>Cảm biến</Text>
 
             {route.params.ID == 0 ?
-                (<View style={styles.sensorContainer}>
-                    <SensorItem type='temp' id={route.params.ID} />
-                    <SensorItem type='humid' id={route.params.ID} />
-                    <SensorItem type='light' id={route.params.ID} />
-                </View>
+                (
+                    // <View style={styles.sensorContainer}>
+                    //     <SensorItem type='temp' id={route.params.ID} addSensor={false} />
+                    //     <SensorItem type='humid' id={route.params.ID} addSensor={false} />
+                    //     <SensorItem type='light' id={route.params.ID} addSensor={false} />
+                    //     <SensorItem type='light' id={route.params.ID} addSensor={true} />
+                    // </View>
+                    <SafeAreaView style={{ height: 195 }}>
+                        <ScrollView>
+                            <View style={styles.sensorContainer}>
+                                <SensorItem type='temp' id={route.params.ID} addSensor={false} />
+                                <SensorItem type='humid' id={route.params.ID} addSensor={false} />
+                                <SensorItem type='light' id={route.params.ID} addSensor={false} />
+                                <SensorItem addSensor={true} />
+                            </View>
+                        </ScrollView>
+                    </SafeAreaView>
                 ) :
                 [route.params.ID == 1 ?
                     (
-                        <View style={styles.sensorContainer}>
-                            <SensorItem type='temp' id={route.params.ID} />
-                            <SensorItem type='humid' id={route.params.ID} />
-                            <SensorItem type='light' id={route.params.ID} />
-                        </View>
+                        <SafeAreaView style={{ height: 195 }}>
+                            <ScrollView>
+                                <View style={styles.sensorContainer}>
+                                    <SensorItem type='temp' id={route.params.ID} addSensor={false} />
+                                    <SensorItem type='humid' id={route.params.ID} addSensor={false} />
+                                    <SensorItem type='light' id={route.params.ID} addSensor={false} />
+                                    <SensorItem addSensor={true} />
+                                </View>
+                            </ScrollView>
+                        </SafeAreaView>
                     ) :
                     (
-                        <View style={styles.sensorContainer}>
-                            <SensorItem type='temp' id={route.params.ID} />
-                            <SensorItem type='humid' id={route.params.ID} />
-                            <SensorItem type='light' id={route.params.ID} />
-                        </View>
+                        <SafeAreaView style={{ height: 195 }}>
+                            <ScrollView>
+                                <View style={styles.sensorContainer}>
+                                    <SensorItem type='temp' id={route.params.ID} addSensor={false} />
+                                    <SensorItem type='humid' id={route.params.ID} addSensor={false} />
+                                    <SensorItem type='light' id={route.params.ID} addSensor={false} />
+                                    <SensorItem addSensor={true} />
+                                </View>
+                            </ScrollView>
+                        </SafeAreaView>
                     )
                 ]
 
@@ -59,16 +81,19 @@ export default function RoomDetail({ route }) {
                         devices.map((device, number) =>
                         (
                             <Pressable onPress={() => choose(device)}>
-                                <DeviceItem key={number} id={device.ID} name={device.name} type={device.type} />
+                                <DeviceItem key={number} id={device.ID} name={device.name} type={device.type} addDevice={false} />
                             </Pressable>
                         ))
                     }
+                    <Pressable onPress={() => choose(device)}>
+                        <DeviceItem addDevice={true} />
+                    </Pressable>
                 </ScrollView>
             </SafeAreaView>
             <View style={styles.line2}></View>
             <View style={styles.deviceDetail}>
                 <DeviceDetail name={name} type={type} id={route.params.ID} roomName={route.params.name} />
             </View>
-        </View>
+        </View >
     )
 }

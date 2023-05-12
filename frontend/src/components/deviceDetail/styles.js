@@ -151,21 +151,21 @@ export default StyleSheet.create({
         alignSelf: 'center',
         marginTop: 10,
     },
-    buttonOpen: {
-        backgroundColor: '#F194FF',
-    },
-    cancelButtonClose: {
-        backgroundColor: '#969998',
-    },
-    buttonClose: {
-        backgroundColor: '#2196F3',
-    },
     textStyle: {
         color: 'white',
         fontWeight: 'bold',
         textAlign: 'center',
         marginLeft: 10,
         marginRight: 10
+    },
+    cancelButtonClose: {
+        backgroundColor: '#969998',
+    },
+    buttonOpen: {
+        backgroundColor: '#F194FF',
+    },
+    buttonClose: {
+        backgroundColor: '#2196F3',
     },
     modalText: {
         textAlign: 'center',
@@ -203,5 +203,45 @@ export default StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         width: 270,
-    }
+    },
+    input: {
+        width: 250,
+        height: 40,
+        margin: 10,
+        marginBottom: 5,
+        borderWidth: 1,
+        borderRadius: 5,
+        fontSize: 18,
+        paddingLeft: 15,
+        paddingBottom: 5,
+        paddingTop: 5
+    },
+    dropdownStyle: {
+        backgroundColor: 'white',
+        borderWidth: 1,
+        borderRadius: 5,
+        width: 250,
+        height: 40,
+        margin: 10,
+        marginBottom: 5,
+        fontSize: 18,
+        paddingLeft: 5,
+        paddingBottom: 5,
+        paddingTop: 5,
+    },
+    dropdown1BtnStyle: {
+        width: 250,
+        height: 40,
+        backgroundColor: '#FFF',
+        borderRadius: 5,
+        borderWidth: 1,
+        borderColor: '#444',
+        margin: 10,
+        marginBottom: 5,
+        fontSize: 18,
+        paddingLeft: 5,
+        paddingBottom: 5,
+        paddingTop: 5,
+    },
+    dropdown1BtnTxtStyle: { color: 'black', textAlign: 'left' },
 })
