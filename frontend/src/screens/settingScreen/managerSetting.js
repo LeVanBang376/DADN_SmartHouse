@@ -16,6 +16,7 @@ import helpScreen from './helpScreen'
 import requestScreen from './requestScreen'
 import problemScreen from './problemScreen'
 import EditProfileScreen from './EditProfileScreen'
+import Login from '../LoginScreens/Login'
 const Stack = createNativeStackNavigator()
 
 export default function managerSetting() {
@@ -128,7 +129,13 @@ export default function managerSetting() {
                     title: 'Đăng xuất',
                 }}
             />
-
+            <Stack.Screen
+                name='loginScreen'
+                component={Login}
+                options={{
+                    title: 'Login',
+                }}
+            />
         </Stack.Navigator>
     )
 }

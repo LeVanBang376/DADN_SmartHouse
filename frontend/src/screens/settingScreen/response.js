@@ -32,12 +32,12 @@ export default function response() {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            Authorization: 'Bearer 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'
+            Authorization: 'Bearer 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'
         },
         body: JSON.stringify({
             "model": "text-davinci-003",
             "prompt": value,
-            "max_tokens": 1000,
+            "max_tokens": 1500,
             "temperature": 0
         }),
     });
@@ -52,7 +52,7 @@ export default function response() {
 
   const addNewMess = data => {
     const newMessage = {
-      _id: Math.random(999) + 3,
+      _id: Math.random(999999),
       text: data,
       createdAt: new Date(),
       user: {

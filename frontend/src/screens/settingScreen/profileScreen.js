@@ -5,13 +5,13 @@ import { useNavigation,useRoute  } from '@react-navigation/native';
 const ProfileScreen = () => {
   const navigation = useNavigation();
   const route = useRoute();
-  const [userData, setUserData] = useState({
+const [userData, setUserData] = useState({
     name: 'Nguyễn Mạnh Thuyên',
     phoneNumber: '0123456789',
     avatarUri: 'https://bom.so/mW0kNe',
-    dateOfBirth: '01/01/2000',
-    email: 'johndoe@gmail.com',
-    address: '123 Main Street, Anytown USA',
+    dateOfBirth: '01/01/2002',
+    email: 'thuyen.nguyennmt942@hcmut.edu.vn',
+    address: 'KTX Khu A, phường Linh Trung, thành phố Thủ Đức',
   });
   useEffect(() => {
     if (route.params?.userData) {

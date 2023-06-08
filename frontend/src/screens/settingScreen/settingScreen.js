@@ -12,7 +12,6 @@ import {
 import FeatherIcon from 'react-native-vector-icons/Feather';
 import { NavigationContainer } from '@react-navigation/native';
 import { useNavigation } from '@react-navigation/native';
-
 const SECTIONS = [
   //   {
   //     header: '',
@@ -95,7 +94,7 @@ export default function settingScreen() {
                           } else if (id === 'response') {
                             navigation.navigate('helpAndResponse');
                           } else if (id === 'logOut') {
-                            navigation.navigate('logOut');
+                            navigation.navigate('loginScreen');
                           }
                           // Add conditions for other links here
                         } else {

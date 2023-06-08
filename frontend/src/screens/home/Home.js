@@ -1,7 +1,7 @@
 import React from 'react'
 import { Pressable, Text, View } from 'react-native'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
-import RoomItem from '../../components/roomItem/RoomItem'
+import RoomItem from '../../roomItem/RoomItem'
 import styles from './styles'
 import DeviceListAPI from '../../userContext/DeviceContext'
 import RoomAPI from '../../userContext/RoomContext'
