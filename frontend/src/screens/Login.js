@@ -32,6 +32,7 @@ const Login = ({ navigation }) => {
                             setEroormsg(data.error);
                         }
                         else {
+                            console.log('a')
                             setUserDbId(data.userDbId)
                             alert('Login successfully');
                             setLogin(true)

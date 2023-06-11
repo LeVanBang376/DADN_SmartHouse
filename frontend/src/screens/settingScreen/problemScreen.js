@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, ScrollView, TouchableOpacity } from 'react-native';
 
-export default function problemScreen() {
+export default function ProblemScreen() {
   const [showTerms, setShowTerms] = useState(false);
   const [showPolicy, setShowPolicy] = useState(false);
 

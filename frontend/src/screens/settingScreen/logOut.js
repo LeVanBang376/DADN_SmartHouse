@@ -3,7 +3,7 @@ import * as React from "react";
 import { Text, View, Button, StyleSheet } from "react-native";
 
 
-const logOut = ({ navigation }) => {
+const LogOut = ({ navigation }) => {
     return (
         <View>
             <Text>Dang xuat</Text>
@@ -11,5 +11,5 @@ const logOut = ({ navigation }) => {
     )
 }
 
-export default logOut
+export default LogOut
 

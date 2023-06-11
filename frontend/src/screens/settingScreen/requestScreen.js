@@ -1,15 +1,37 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet ,ScrollView} from 'react-native';
 
+
 const requestScreen = () => {
    // tabBarOptions.keyboardHidesTabBar = false;
-  const [title, setTitle] = useState('');
-  const [content, setContent] = useState('');
+   const [title, setTitle] = useState('');
+   const [content, setContent] = useState('');
+ 
+   const handleSubmit = () => {
+    const data = {
+      title: title,
+      content: content,
+    };
+  
+    fetch('http://172.20.5.41:3000/send-email', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify(data),
+})
 
-  const handleSubmit = () => {
-    // Do something with title and content
-    console.log(title, content);
+      .then(response => response.json())
+      .then(result => {
+        console.log(result.message);
+        // Xử lý các hành động khác sau khi gửi email thành công
+      })
+      .catch(error => {
+        console.error('Email failed to send:', error);
+        // Xử lý các hành động khác khi gửi email thất bại
+      });
   };
+  
 
   return (
     <View style={styles.container}>
@@ -76,5 +98,4 @@ const styles = StyleSheet.create({
 });
 
 export default requestScreen;
-
 
