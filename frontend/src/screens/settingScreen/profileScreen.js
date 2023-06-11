@@ -26,7 +26,7 @@ const ProfileScreen = () => {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Image style={styles.avatar} source={{ uri: userData.avatarUri }} />
+        <Image style={styles.avatar} source={require('./../../../assets/catFish.jpg')} />
         <Text style={styles.name}>{userData.name}</Text>
         <Text style={styles.phoneNumber}>{userData.phoneNumber}</Text>
       </View>

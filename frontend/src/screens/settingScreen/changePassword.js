@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
-const changePassword = () => {
+const ChangePassword = () => {
     const [currentPassword, setCurrentPassword] = useState('');
     const [newPassword, setNewPassword] = useState('');
     const [confirmNewPassword, setConfirmNewPassword] = useState('');
@@ -113,7 +113,7 @@ const changePassword = () => {
     );
 };
 
-export default changePassword;
+export default ChangePassword;
 
 const styles = StyleSheet.create({
     container: {

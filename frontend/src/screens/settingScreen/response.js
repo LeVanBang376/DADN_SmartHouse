@@ -2,7 +2,8 @@ import React, { useState, useCallback, useEffect } from 'react';
 import { SafeAreaView, StyleSheet } from 'react-native';
 import { GiftedChat } from 'react-native-gifted-chat';
 
-export default function response() {
+
+export default function Response() {
   const [messages, setMessages] = useState([]);
 
   useEffect(() => {
@@ -14,7 +15,7 @@ export default function response() {
         user: {
           _id: 2,
           name: 'React Native',
-          avatar: 'https://bom.so/mW0kNe',
+          avatar: require('./../../../assets/catFish.jpg'),
         },
       },
     ]);
@@ -32,7 +33,7 @@ export default function response() {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            Authorization: 'Bearer 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'
+            Authorization: 'Bearer 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'
         },
         body: JSON.stringify({
             "model": "text-davinci-003",

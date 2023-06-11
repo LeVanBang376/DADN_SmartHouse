@@ -1,24 +1,25 @@
 import * as React from 'react'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
-import profileScreen from './profileScreen'
-import settingScreen from './settingScreen'
-import historyScreen from '../historyScreen/historyScreen'
-import changePassword from '../../screens/settingScreen/changePassword'
-import policies from '../../screens/settingScreen/policies'
-import term from '../../screens/settingScreen/term'
-import termsAndPolicies from '../../screens/settingScreen/termsAndPolicies'
+import ProfileScreen from './profileScreen'
+import SettingScreen from './settingScreen'
+import HistoryScreen from '../historyScreen/historyScreen'
+import ChangePassword from '../../screens/settingScreen/changePassword'
+import Policies from '../../screens/settingScreen/policies'
+import Term from '../../screens/settingScreen/term'
+import TermsAndPolicies from '../../screens/settingScreen/termsAndPolicies'
 import Color from '../../colors/Color'
-import logOut from './logOut'
-import response from './response'
-import helpAndResponse from './helpAndResponse'
-import helpScreen from './helpScreen'
-import requestScreen from './requestScreen'
-import problemScreen from './problemScreen'
+import LogOut from './logOut'
+import Response from './response'
+import HelpAndResponse from './helpAndResponse'
+import HelpScreen from './helpScreen'
+import RequestScreen from './requestScreen'
+import ProblemScreen from './problemScreen'
 import EditProfileScreen from './EditProfileScreen'
+import ChangeTem from './changeTem'
 const Stack = createNativeStackNavigator()
 
-export default function managerSetting() {
+export default function ManagerSetting() {
     return (
         <Stack.Navigator
             screenOptions={{
@@ -30,14 +31,14 @@ export default function managerSetting() {
         >
             <Stack.Screen
                 name='settingScreen'
-                component={settingScreen}
+                component={SettingScreen}
                 options={{
                     title: '',
                 }}
             />
             <Stack.Screen
                 name='profileScreen'
-                component={profileScreen}
+                component={ProfileScreen}
                 options={{
                     title: 'Thông tin cá nhân',
                 }}
@@ -50,8 +51,8 @@ export default function managerSetting() {
                 }}
             />
             <Stack.Screen
-                name='historyScreen'
-                component={historyScreen}
+                name='HistoryScreen'
+                component={HistoryScreen}
                 options={{
                     title: 'Lịch sử',
                 }}
@@ -59,63 +60,63 @@ export default function managerSetting() {
 
             <Stack.Screen
                 name='changePassword'
-                component={changePassword}
+                component={ChangePassword}
                 options={{
                     title: 'Đổi mật khẩu',
                 }}
             />
             <Stack.Screen
                 name='termsAndPolicies'
-                component={termsAndPolicies}
+                component={TermsAndPolicies}
                 options={{
                     title: 'Điều khoản và chính sách',
                 }}
             />
             <Stack.Screen
                 name='term'
-                component={term}
+                component={Term}
                 options={{
                     title: 'Điều khoản',
                 }}
             />
             <Stack.Screen
                 name='policies'
-                component={policies}
+                component={Policies}
                 options={{
                     title: 'Chính sách',
                 }}
             />
             <Stack.Screen
                 name='helpAndResponse'
-                component={helpAndResponse}
+                component={HelpAndResponse}
                 options={{
                     title: 'Phản hồi và trợ giúp',
                 }}
             />
             <Stack.Screen
                 name='helpScreen'
-                component={helpScreen}
+                component={HelpScreen}
                 options={{
                     title: 'Trợ giúp',
                 }}
             />
             <Stack.Screen
                 name='response'
-                component={response}
+                component={Response}
                 options={{
                     title: 'Phản hồi',
                 }}
             />
             <Stack.Screen
                 name='requestScreen'
-                component={requestScreen}
+                component={RequestScreen}
                 options={{
                     title: 'Gửi yêu cầu trợ giúp',
                 }}
             />
             <Stack.Screen
                 name='problemScreen'
-                component={problemScreen}
+                component={ProblemScreen}
                 options={{
                     title: 'Các vấn đề thường gặp',
                 }}
@@ -123,9 +124,16 @@ export default function managerSetting() {
 
             <Stack.Screen
                 name='logOut'
-                component={logOut}
+                component={LogOut}
                 options={{
                     title: 'Đăng xuất',
+                }}
+            />
+            <Stack.Screen
+                name='changeTem'
+                component={ChangeTem}
+                options={{
+                    title: 'Thay đổi ngưỡng nhiệt độ',
                 }}
             />
 

@@ -27,6 +27,7 @@ const SECTIONS = [
     items: [
       { id: 'profile', icon: 'flag', color: '#fd2d54', label: 'Thông tin cá nhân', type: 'link' },
       { id: 'keyChange', icon: 'key', color: '#007afe', label: 'Đổi mật khẩu', type: 'link' },
+      { id: 'changeTem', icon: 'thermometer', color: '#ff9900', label: 'Ngưỡng nhiệt độ', type: 'link' },
     ],
   },
   {
@@ -45,7 +46,7 @@ const SECTIONS = [
 ];
 
 
-export default function settingScreen() {
+export default function SettingScreen() {
   const [form, setForm] = useState({
     language: 'English',
     darkMode: true,
@@ -58,9 +59,7 @@ export default function settingScreen() {
         <View style={styles.profile}>
           <Image
             alt=""
-            source={{
-              uri: 'https://bom.so/mW0kNe',
-            }}
+            source={require('./../../../assets/catFish.jpg')}
             style={styles.profileAvatar}
           />
 
@@ -96,6 +95,9 @@ export default function settingScreen() {
                             navigation.navigate('helpAndResponse');
                           } else if (id === 'logOut') {
                             navigation.navigate('logOut');
+                          }
+                          else if (id === 'changeTem') {
+                            navigation.navigate('changeTem');
                           }
                           // Add conditions for other links here
                         } else {

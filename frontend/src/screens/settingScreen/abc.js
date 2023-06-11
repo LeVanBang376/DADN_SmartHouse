@@ -1,10 +1,7 @@
 const nodemailer = require("nodemailer");
-// Import NodeMailer (after npm install)
 
-async function main() {
+async function sendEmail(title, content) {
     // Get title and content from command line arguments
-    const title = "thuyen";
-    const content = "dep trai";
 
     console.log(title, content);
 
@@ -39,5 +36,5 @@ async function main() {
 
 }
 
-main()
+sendEmail()
     .catch(err => console.log(err));

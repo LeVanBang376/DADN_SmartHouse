@@ -3,7 +3,7 @@ import * as React from "react";
 import { Text, View, Button, StyleSheet } from "react-native";
 
 
-const historyScreen = ({ navigation }) => {
+const HistoryScreen = ({ navigation }) => {
     return (
         <View>
             <Text>Lịch sử</Text>
@@ -11,5 +11,5 @@ const historyScreen = ({ navigation }) => {
     )
 }
 
-export default historyScreen
+export default HistoryScreen
 
