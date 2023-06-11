@@ -5,10 +5,64 @@ import { FontAwesome } from '@expo/vector-icons'
 import SelectDropdown from 'react-native-select-dropdown'
 import styles from './styles'
 import UserHelperAPI from '../../userContext/UserHelperContext'
+import AuthenticationAPI from '../../userContext/AuthenticationContext'
+import RoomAPI from '../../userContext/RoomContext'
+import DeviceListAPI from '../../userContext/DeviceContext'
+
 export default function DeviceItem(props) {
+    const { deviceList, setDeviceList } = React.useContext(DeviceListAPI)
+    const { userDbId } = React.useContext(AuthenticationAPI)
     const { isChoosed } = React.useContext(UserHelperAPI)
+    const { roomID } = React.useContext(RoomAPI)
     const [addDeviceModalVisible, setAddDeviceModalVisible] = useState(false);
     const deviceType = ["Bóng đèn", "Quạt"]
+    const [deviceName, setDeviceName] = useState();
+    const [deviceTyp, setDeviceTyp] = useState()
+    const [relay, setRelay] = useState()
+    const handleAddDeivce = () => {
+        fetch('http://172.17.13.131:3333/adddevice', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                deviceName: deviceName,
+                deviceType: deviceTyp,
+                roomId: roomID,
+                userDbId: userDbId,
+                relay: relay,
+            })
+        })
+            .then(res => res.json()).then(
+                data => {
+                    setDeviceList([...deviceList, {
+                        deviceName: deviceName,
+                        deviceType: deviceTyp,
+                        roomId: roomID,
+                        userDbId: userDbId,
+                        relay: relay,
+                        state: 'off',
+                        timeAuto: 'off',
+                        sensorAuto: 'off',
+                        onHour: 0,
+                        onMin: 0,
+                        offHour: 0,
+                        offMin: 0,
+                        onSensor: 0,
+                        offSensor: 0,
+                    }])
+                    setDeviceName("")
+                    setDeviceTyp("")
+                    setRelay("")
+                }
+            )
+    }
+
+    const handleCancel = () => {
+        setDeviceName("")
+        setDeviceTyp("")
+        setRelay("")
+    }
     return (
         props.addDevice == false ?
             (
@@ -48,8 +102,8 @@ export default function DeviceItem(props) {
                                         <SafeAreaView>
                                             <TextInput
                                                 style={styles.input}
-                                            // onChangeText={setHelperDeviceName}
-                                            // value={helperDeviceName}
+                                                onChangeText={setDeviceName}
+                                                value={deviceName}
                                             />
                                         </SafeAreaView>
                                     </View>
@@ -58,40 +112,47 @@ export default function DeviceItem(props) {
                                     <SelectDropdown
                                         data={deviceType}
                                         onSelect={(selectedItem, index) => {
-                                            console.log(selectedItem, index)
+                                            if (selectedItem == "Bóng đèn") {
+                                                setDeviceTyp("bulb")
+                                            } else setDeviceTyp("fan")
                                         }}
                                         buttonTextAfterSelection={(selectedItem, index) => {
-                                            // text represented after item is selected
-                                            // if data array is an array of objects then return selectedItem.property to render after item is selected
                                             return selectedItem
                                         }}
                                         rowTextForSelection={(item, index) => {
-                                            // text represented for each item in dropdown
-                                            // if data array is an array of objects then return item.property to represent item in dropdown
                                             return item
                                         }}
-                                        // buttonStyle={styles.dropdownStyle}
                                         rowTextStyle={{ textAlign: 'left' }}
-                                        // buttonTextStyle={{ textAlign: 'right' }}
                                         buttonStyle={styles.dropdown1BtnStyle}
                                         buttonTextStyle={styles.dropdown1BtnTxtStyle}
                                         renderDropdownIcon={isOpened => {
                                             return <FontAwesome name={isOpened ? 'chevron-up' : 'chevron-down'} color={'#444'} size={18} />;
                                         }}
                                     />
+
+                                    <Text style={{ fontWeight: 'bold', fontSize: 18 }}>Relay (0, 1, 2...)</Text>
+                                    <View style={{ width: 60 }}>
+                                        <SafeAreaView>
+                                            <TextInput
+                                                style={styles.input}
+                                                onChangeText={setRelay}
+                                                value={relay}
+                                            />
+                                        </SafeAreaView>
+                                    </View>
                                 </View>
                                 <View style={styles.buttonContainer}>
                                     <View>
                                         <Pressable
                                             style={[styles.button, styles.cancelButtonClose]}
-                                            onPress={() => setAddDeviceModalVisible(!addDeviceModalVisible)}>
+                                            onPress={() => { handleCancel(); setAddDeviceModalVisible(!addDeviceModalVisible) }}>
                                             <Text style={styles.textStyle}>Hủy bỏ</Text>
                                         </Pressable>
                                     </View>
                                     <View >
                                         <Pressable
                                             style={[styles.button, styles.buttonClose]}
-                                            onPress={() => setAddDeviceModalVisible(!addDeviceModalVisible)}>
+                                            onPress={() => { handleAddDeivce(); setAddDeviceModalVisible(!addDeviceModalVisible) }}>
                                             <Text style={styles.textStyle}>Đồng ý</Text>
                                         </Pressable>
                                     </View>
@@ -100,7 +161,12 @@ export default function DeviceItem(props) {
                         </View>
                     </Modal>
 
-                    <Pressable onPress={() => setAddDeviceModalVisible(true)}>
+                    <Pressable onPress={() => {
+                        setDeviceName("")
+                        setDeviceTyp("")
+                        setRelay("")
+                        setAddDeviceModalVisible(true)
+                    }}>
                         <View style={styles.deviceContainer1}>
                             <Text style={styles.text1}>Thêm</Text>
                             <Text style={styles.text1}>thiết bị</Text>

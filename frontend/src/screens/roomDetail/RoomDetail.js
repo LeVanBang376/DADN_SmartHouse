@@ -5,73 +5,39 @@ import DeviceItem from '../../components/deviceItem/DeviceItem'
 import DeviceDetail from '../../components/deviceDetail/DeviceDetail'
 import styles from './styles'
 import DeviceListAPI from '../../userContext/DeviceContext'
+import SensorListAPI from '../../userContext/SensorContext'
 import UserHelperAPI from '../../userContext/UserHelperContext'
 
 export default function RoomDetail({ route }) {
     const { deviceList } = React.useContext(DeviceListAPI)
+    const { sensorList } = React.useContext(SensorListAPI)
     const { setIsChoosed } = React.useContext(UserHelperAPI)
-    const devices = deviceList[route.params.ID]
-    const [id, setId] = React.useState(devices.length > 0 ? devices[0].ID : '')
-    const [name, setName] = React.useState(devices.length > 0 ? devices[0].name : '')
-    const [type, setType] = React.useState(devices.length > 0 ? devices[0].type : '')
+    const devices = deviceList.filter(device => device.roomId === route.params.ID)
+    const sensors = sensorList.filter(sensor => sensor.roomId === route.params.ID)
+    const [name, setName] = React.useState(devices.length > 0 ? devices[0].deviceName : '')
+    const [type, setType] = React.useState(devices.length > 0 ? devices[0].deviceType : '')
+    const [relay, setRelay] = React.useState(devices.length > 0 ? devices[0].relay : '')
     const choose = (device) => {
-        setName(device.name)
-        setType(device.type)
-        setId(device.ID)
-        setIsChoosed(device.ID)
+        setName(device.deviceName)
+        setType(device.deviceType)
+        setRelay(device.relay)
+        setIsChoosed(device.relay)
     }
     return (
         <View style={{ flex: 1, backgroundColor: 'white' }}>
             <Text style={styles.headerText}>Cảm biến</Text>
-
-            {route.params.ID == 0 ?
-                (
-                    // <View style={styles.sensorContainer}>
-                    //     <SensorItem type='temp' id={route.params.ID} addSensor={false} />
-                    //     <SensorItem type='humid' id={route.params.ID} addSensor={false} />
-                    //     <SensorItem type='light' id={route.params.ID} addSensor={false} />
-                    //     <SensorItem type='light' id={route.params.ID} addSensor={true} />
-                    // </View>
-                    <SafeAreaView style={{ height: 195 }}>
-                        <ScrollView>
-                            <View style={styles.sensorContainer}>
-                                <SensorItem type='temp' id={route.params.ID} addSensor={false} />
-                                <SensorItem type='humid' id={route.params.ID} addSensor={false} />
-                                <SensorItem type='light' id={route.params.ID} addSensor={false} />
-                                <SensorItem addSensor={true} />
-                            </View>
-                        </ScrollView>
-                    </SafeAreaView>
-                ) :
-                [route.params.ID == 1 ?
-                    (
-                        <SafeAreaView style={{ height: 195 }}>
-                            <ScrollView>
-                                <View style={styles.sensorContainer}>
-                                    <SensorItem type='temp' id={route.params.ID} addSensor={false} />
-                                    <SensorItem type='humid' id={route.params.ID} addSensor={false} />
-                                    <SensorItem type='light' id={route.params.ID} addSensor={false} />
-                                    <SensorItem addSensor={true} />
-                                </View>
-                            </ScrollView>
-                        </SafeAreaView>
-                    ) :
-                    (
-                        <SafeAreaView style={{ height: 195 }}>
-                            <ScrollView>
-                                <View style={styles.sensorContainer}>
-                                    <SensorItem type='temp' id={route.params.ID} addSensor={false} />
-                                    <SensorItem type='humid' id={route.params.ID} addSensor={false} />
-                                    <SensorItem type='light' id={route.params.ID} addSensor={false} />
-                                    <SensorItem addSensor={true} />
-                                </View>
-                            </ScrollView>
-                        </SafeAreaView>
-                    )
-                ]
-
-            }
-
+            <SafeAreaView style={{ height: 195 }}>
+                <ScrollView>
+                    <View style={styles.sensorContainer}>
+                        {
+                            sensors.map((sensor, number) => (
+                                <SensorItem key={number} id={route.params.ID} name={sensor.sensorName} type={sensor.sensorType} addSensor={false} />
+                            ))
+                        }
+                        <SensorItem id={route.params.ID} addSensor={true} />
+                    </View>
+                </ScrollView>
+            </SafeAreaView>
 
             <View style={styles.line}></View>
             <Text style={styles.headerText}>Thiết bị</Text>
@@ -81,18 +47,18 @@ export default function RoomDetail({ route }) {
                         devices.map((device, number) =>
                         (
                             <Pressable onPress={() => choose(device)}>
-                                <DeviceItem key={number} id={device.ID} name={device.name} type={device.type} addDevice={false} />
+                                <DeviceItem key={number} id={device.relay} name={device.deviceName} type={device.deviceType} addDevice={false} />
                             </Pressable>
                         ))
                     }
-                    <Pressable onPress={() => choose(device)}>
+                    <Pressable >
                         <DeviceItem addDevice={true} />
                     </Pressable>
                 </ScrollView>
             </SafeAreaView>
             <View style={styles.line2}></View>
             <View style={styles.deviceDetail}>
-                <DeviceDetail name={name} type={type} id={route.params.ID} roomName={route.params.name} />
+                <DeviceDetail name={name} type={type} relay={relay} id={route.params.ID} roomName={route.params.name} />
             </View>
         </View >
     )

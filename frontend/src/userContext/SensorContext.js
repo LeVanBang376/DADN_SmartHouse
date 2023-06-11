@@ -1,12 +1,12 @@
-import React, { useState, createContext, useCallback } from 'react'
+import React, { useState, createContext } from 'react'
 import AuthenticationAPI from './AuthenticationContext'
-const DeviceListAPI = createContext()
-export function DeviceContext({ children }) {
-    const [deviceList, setDeviceList] = useState([])
+const SensorListAPI = createContext()
+export function SensorContext({ children }) {
+    const [sensorList, setSensorList] = useState([])
     const { userDbId } = React.useContext(AuthenticationAPI)
-    const getDevices = () => {
+    const getSensors = () => {
         if (userDbId != "") {
-            fetch('http://172.17.13.131:3333/getdevices', {
+            fetch('http://172.17.13.131:3333/getsensors', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -18,25 +18,26 @@ export function DeviceContext({ children }) {
                 .then(res => res.json()).then(
                     data => {
                         if (!data.error)
-                            setDeviceList(data)
+                            setSensorList(data)
                     }
                 )
         }
+
     }
 
     React.useEffect(() => {
-        getDevices()
+        getSensors()
     }, [userDbId])
 
     return (
-        <DeviceListAPI.Provider
+        <SensorListAPI.Provider
             value={{
-                deviceList,
-                setDeviceList,
+                sensorList,
+                setSensorList
             }}>
             {children}
-        </DeviceListAPI.Provider>
+        </SensorListAPI.Provider>
     )
 }
 
-export default DeviceListAPI
+export default SensorListAPI

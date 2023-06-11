@@ -4,7 +4,7 @@ import { Ionicons } from '@expo/vector-icons';
 import settingScreen from '../src/screens/settingScreen/settingScreen';
 import managerSetting from '../../frontend/src/screens/settingScreen/managerSetting'
 import ManageHome from '../src/screens/home/ManageHome';
-import historyScreen from '../src/screens/historyScreen/historyScreen';
+import ManageHistory from '../src/screens/historyScreen/ManageHistory';
 
 const Tab = createBottomTabNavigator();
 
@@ -28,12 +28,13 @@ const Tabs = () => {
       />
       <Tab.Screen
         name="Lịch sử"
-        component={historyScreen}
+        component={ManageHistory}
         options={{
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="md-time" size={size} color={color} />
           ),
         }}
+
       />
       <Tab.Screen
         name="Cài đặt"

@@ -12,6 +12,7 @@ import {
 import FeatherIcon from 'react-native-vector-icons/Feather';
 import { NavigationContainer } from '@react-navigation/native';
 import { useNavigation } from '@react-navigation/native';
+import AuthenticationAPI from '../../userContext/AuthenticationContext';
 
 const SECTIONS = [
   //   {
@@ -52,6 +53,7 @@ export default function settingScreen() {
     wifi: false,
   });
   const navigation = useNavigation();
+  const { setLogin } = React.useContext(AuthenticationAPI)
   return (
     <SafeAreaView style={{ backgroundColor: '#f6f6f6' }}>
       <ScrollView contentContainerStyle={styles.container}>
@@ -95,7 +97,7 @@ export default function settingScreen() {
                           } else if (id === 'response') {
                             navigation.navigate('helpAndResponse');
                           } else if (id === 'logOut') {
-                            navigation.navigate('logOut');
+                            setLogin(false)
                           }
                           // Add conditions for other links here
                         } else {
@@ -114,7 +116,7 @@ export default function settingScreen() {
                         {type === 'select' && (
                           <Text style={styles.rowValue}>{form[id]}</Text>
                         )}
-                
+
                         {(type === 'select' || type === 'link') && (
                           <FeatherIcon
                             color="#ababab"
@@ -157,21 +159,21 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   profileAvatar: {
-  width: 150,
-  height: 150,
-  borderRadius: 9999,
-  shadowColor: "#000",
-  shadowOffset: {
-    width: 0,
-    height: 2,
-  },
-  shadowOpacity: 0.25,
-  shadowRadius: 3.84,
+    width: 150,
+    height: 150,
+    borderRadius: 9999,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
 
-  elevation: 5,
-  borderWidth: 3,
-  borderColor: '#fff',
-},
+    elevation: 5,
+    borderWidth: 3,
+    borderColor: '#fff',
+  },
   profileAvatarWrapper: {
     position: 'relative',
   },

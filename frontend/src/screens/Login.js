@@ -2,13 +2,14 @@ import { StyleSheet, Text, TextInput, View } from "react-native";
 import React, { useState } from "react";
 import { button1 } from '../common/button';
 import { errormessage, formgroup, head1, head2, input, label, link, link2 } from '../common/formcss';
-
+import AuthenticationAPI from '../userContext/AuthenticationContext'
 const Login = ({ navigation }) => {
     const [fdata, setFdata] = useState({
         email: '',
         password: ''
     })
     const [errormsg, setEroormsg] = useState(null);
+    const { setLogin, setUserDbId } = React.useContext(AuthenticationAPI)
 
     const Sendtobackend = () => {
         console.log(fdata);
@@ -17,7 +18,7 @@ const Login = ({ navigation }) => {
             return;
         }
         else {
-            fetch('http://10.230.9.125:3333/signin', {
+            fetch('http://172.17.13.131:3333/signin', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -26,13 +27,14 @@ const Login = ({ navigation }) => {
             })
                 .then(res => res.json()).then(
                     data => {
-                        // console.log(data);
+                        console.log(data);
                         if (data.error) {
                             setEroormsg(data.error);
                         }
                         else {
+                            setUserDbId(data.userDbId)
                             alert('Login successfully');
-                            navigation.navigate('homepage');
+                            setLogin(true)
                         }
                     }
                 )

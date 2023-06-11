@@ -30,7 +30,7 @@ const SignUp = ({ navigation }) => {
                 return;
             }
             else {
-                fetch('http://10.230.9.125:3333/signup', {
+                fetch('http://172.17.13.131:3333/signup', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'

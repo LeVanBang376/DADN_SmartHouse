@@ -1,12 +1,12 @@
-import React, { useState, createContext, useCallback } from 'react'
+import React, { useState, createContext } from 'react'
 import AuthenticationAPI from './AuthenticationContext'
-const DeviceListAPI = createContext()
-export function DeviceContext({ children }) {
-    const [deviceList, setDeviceList] = useState([])
+const RoomListAPI = createContext()
+export function RoomListContext({ children }) {
+    const [roomList, setRoomList] = useState([])
     const { userDbId } = React.useContext(AuthenticationAPI)
-    const getDevices = () => {
+    const getRooms = () => {
         if (userDbId != "") {
-            fetch('http://172.17.13.131:3333/getdevices', {
+            fetch('http://172.17.13.131:3333/getrooms', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -18,25 +18,26 @@ export function DeviceContext({ children }) {
                 .then(res => res.json()).then(
                     data => {
                         if (!data.error)
-                            setDeviceList(data)
+                            setRoomList(data)
                     }
                 )
         }
     }
 
+
     React.useEffect(() => {
-        getDevices()
+        getRooms()
     }, [userDbId])
 
     return (
-        <DeviceListAPI.Provider
+        <RoomListAPI.Provider
             value={{
-                deviceList,
-                setDeviceList,
+                roomList,
+                setRoomList,
             }}>
             {children}
-        </DeviceListAPI.Provider>
+        </RoomListAPI.Provider>
     )
 }
 
-export default DeviceListAPI
+export default RoomListAPI

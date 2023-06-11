@@ -10,7 +10,7 @@ require('dotenv').config();
 //
 router.post('/signup', async (req, res) => {
     console.log('sent by client - ', req.body);
-    const { name, email, password, number} = req.body;
+    const { name, email, password, number } = req.body;
 
 
     const user = new User({
@@ -48,7 +48,7 @@ router.post('/signin', async (req, res) => {
             if (result) {
                 console.log("Password matched");
                 const token = jwt.sign({ _id: savedUser._id }, process.env.JWT_SECRET);
-                res.send({ token });
+                res.send({ userDbId: savedUser._id, token });
             }
             else {
                 console.log('Password does not match');

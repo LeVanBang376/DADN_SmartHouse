@@ -3,7 +3,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
 import profileScreen from './profileScreen'
 import settingScreen from './settingScreen'
-import historyScreen from '../historyScreen/historyScreen'
+import historyScreen from '../historyScreen/History'
 import changePassword from '../../screens/settingScreen/changePassword'
 import policies from '../../screens/settingScreen/policies'
 import term from '../../screens/settingScreen/term'

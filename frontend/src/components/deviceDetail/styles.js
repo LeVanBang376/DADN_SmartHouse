@@ -127,7 +127,7 @@ export default StyleSheet.create({
         backgroundColor: 'white',
         borderRadius: 20,
         padding: 25,
-        paddingTop: 15,
+        paddingTop: 25,
         paddingBottom: 15,
         alignItems: 'flex-start',
         shadowColor: '#000',
@@ -180,6 +180,7 @@ export default StyleSheet.create({
     },
     onInput: {
         height: 30,
+        paddingLeft: 5,
         margin: 12,
         marginBottom: 8,
         borderWidth: 1,

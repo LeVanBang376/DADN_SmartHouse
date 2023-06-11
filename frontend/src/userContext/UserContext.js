@@ -15,12 +15,10 @@ const UserAPI = createContext()
 export function UserContext({ children }) {
     const { roomID } = React.useContext(RoomAPI)
     const currentRoom = useRef(0)
-    const [message, setMessage] = useState('{\"ID\":0,\"TEMP\":...,\"HUMID\":...,\"LIGHT\":...,\"RELAY_0\":false,\"RELAY_1\":true}')
-    const message0 = useRef('{\"ID\":0,\"TEMP\":...,\"HUMID\":...,\"LIGHT\":...,\"RELAY_0\":false,\"RELAY_1\":true}')
-    const message1 = useRef('{\"ID\":1,\"TEMP\":...,\"HUMID\":...,\"LIGHT\":...,\"RELAY_0\":false,\"RELAY_1\":true}')
-    const message2 = useRef('{\"ID\":2,\"TEMP\":...,\"HUMID\":...,\"LIGHT\":...,\"RELAY_0\":false,\"RELAY_1\":true}')
-    const [devicesState, setDevicesState] = useState({ 'dv0_0': 'false', 'dv0_1': 'true', 'dv1_0': 'false', 'dv1_1': 'false', 'dv2_0': 'false', 'dv2_1': 'false', })
-    console.log(devicesState)
+    const [message, setMessage] = useState('')
+    const message0 = useRef('')
+    const message1 = useRef('')
+    const message2 = useRef('')
     React.useEffect(() => {
         if (roomID == 0) {
             setMessage(message0.current)
@@ -29,27 +27,14 @@ export function UserContext({ children }) {
         } else setMessage(message2.current)
         currentRoom.current = roomID
     }, [roomID])
-    console.log(devicesState)
     const onMessageArrived = (message) => {
         var str = message.payloadString
         if (str[str.indexOf('\"ID\"') + 5] == '0') {
             message0.current = str
-            const help = devicesState
-            help['dv0_0'] = str.slice(str.indexOf('RELAY_0') + 9, str.indexOf(',\"RELAY_1'))
-            help['dv0_1'] = str.slice(str.indexOf('RELAY_1') + 9, str.indexOf('}'))
-            setDevicesState(help)
         } else if (str[str.indexOf('\"ID\"') + 5] == '1') {
             message1.current = str
-            const help = devicesState
-            help['dv1_0'] = str.slice(str.indexOf('RELAY_0') + 9, str.indexOf(',\"RELAY_1'))
-            help['dv1_1'] = str.slice(str.indexOf('RELAY_1') + 9, str.indexOf('}'))
-            setDevicesState(help)
         } else {
             message2.current = str
-            const help = devicesState
-            help['dv2_0'] = str.slice(str.indexOf('RELAY_0') + 9, str.indexOf(',\"RELAY_1'))
-            help['dv2_1'] = str.slice(str.indexOf('RELAY_1') + 9, str.indexOf('}'))
-            setDevicesState(help)
         }
         { currentRoom.current == 0 ? setMessage(message0.current) : [currentRoom.current == 1 ? setMessage(message1.current) : setMessage(message2.current)] }
     }
@@ -76,9 +61,7 @@ export function UserContext({ children }) {
     return (
         <UserAPI.Provider
             value={{
-                message,
-                devicesState,
-                setDevicesState
+                message
             }}>
             {children}
         </UserAPI.Provider>

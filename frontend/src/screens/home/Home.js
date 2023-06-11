@@ -3,15 +3,18 @@ import { Pressable, Text, View, Modal } from 'react-native'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 import RoomItem from '../../components/roomItem/RoomItem'
 import styles from './styles'
-import DeviceListAPI from '../../userContext/DeviceContext'
+import RoomListAPI from '../../userContext/RoomListContext'
 import RoomAPI from '../../userContext/RoomContext'
+import UserHelperAPI from '../../userContext/UserHelperContext'
 export default function Home({ navigation }) {
-    const { roomList } = React.useContext(DeviceListAPI)
+    const { roomList } = React.useContext(RoomListAPI)
+    const { setIsChoosed } = React.useContext(UserHelperAPI)
     const { setRoomID } = React.useContext(RoomAPI)
     const [addRoomModalVisible, setAddRoomModalVisible] = useState(false);
     const handlePress = (roomID, roomName) => {
         setRoomID(roomID)
         setRoomID(roomID)
+        setIsChoosed(0)
         navigation.navigate("RoomDetail", { ID: roomID, name: roomName })
     }
     return (
@@ -48,8 +51,8 @@ export default function Home({ navigation }) {
                 <Text style={styles.selectRoomText}>Hãy chọn phòng</Text>
                 <View style={styles.roomContainer}>
                     {roomList.map((room, number) => (
-                        <Pressable onPress={() => handlePress(room.ID, room.name)}>
-                            <RoomItem key={number} name={room.name} type={room.type} addRoom={false} />
+                        <Pressable onPress={() => handlePress(room.roomId, room.roomName)}>
+                            <RoomItem key={number} name={room.roomName} type={room.roomType} ID={room.roomId} addRoom={false} />
                         </Pressable>
                     ))}
                     <Pressable onPress={() => setAddRoomModalVisible(true)}>

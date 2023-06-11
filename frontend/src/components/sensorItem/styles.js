@@ -54,6 +54,7 @@ export default StyleSheet.create({
         backgroundColor: 'white',
         borderRadius: 20,
         padding: 35,
+        paddingTop: 25,
         alignItems: 'center',
         shadowColor: '#000',
         shadowOffset: {
